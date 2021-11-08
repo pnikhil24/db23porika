@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  //- - let items = ['milk_type','quantity','cost']
+  - let items = results;
+  - let output;
+  script.
+    function buy(x){
+      alert('purchased item ' + x)
+   } 
+  div(class='container-fluid')
+    div(class='row')
+      each output, index in items
+        div(class='col-sm-3' onclick='buy('+index+')') #{output} 
+        
+
+  
