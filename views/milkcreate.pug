@@ -1,0 +1,41 @@
+extends layout
+
+block content
+ h1= title
+ form(id='MilkForm', action="/resource/milk", method="POST")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.milkAttr(for='milk_type',class="col-form-label") Milk type
+      div(class="col-auto")
+         input#milk_type(type='text', name='milk_type',class="form-control")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.milkAttr(for='quantity', class="col-form-label") Milk quantity
+      div(class="col-auto")
+         input#quantity(type='number', name='quantity',class="form-control")
+    div.form-group
+    div(class="row g-3 align-items-center")
+      div(class="col-1")
+         label.milkAttr(for='cost',class="col-form-label") Milk cost
+      div(class="col-auto")
+         input#cost(type='number', name='cost',class="form-control")
+    input(type="submit",class="btn btn-primary")
+ script.
+    document.forms['MilkForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+    method: 'POST',
+    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+    alert("Save succeded")
+    // TODO handle body
+    }).catch((error) => {
+    // TODO handle error
+    alert("Save failed " + error )
+    });
+    });

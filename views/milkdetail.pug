@@ -1,0 +1,38 @@
+extends layout
+
+block content
+ h1= title
+
+  if(toShow == null)
+    h2 No instance to detail
+  else
+    - let milkid = toShow._id
+    - let milk_type = toShow.milk_type
+    - let milkquantity = toShow.quantity
+    - let milkcost = toShow.cost
+    - let actionid = "/resource/milk/" + milkid
+    script let actionid = "#{actionid}"
+    div
+    div.row
+    div(class='milkAttr mr-3') Milk ID is: 
+      span(style="color:red") #{milkid}
+    div.row
+    div(class='milkAttr mr-3') Milk Type is: 
+      span(style="color:red") #{milk_type}
+    div.row
+    div(class='milkAttr mr-3') Milk Quantity is: 
+      span(style="color:red") #{milkquantity}
+    div.row
+    div(class='milkAttr mr-3') Milk Cost is:
+      span(style="color:red") #{milkcost}
+    button(class="btn btn-primary m-2" onclick="detailOnid()") Goback
+    button(class="btn btn-danger m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+    // Go back to the home page for the gas collection
+    window.location.href='/milk'
+    }
+    function detailOnid() {
+    window.location.href='/milk'
+    }
